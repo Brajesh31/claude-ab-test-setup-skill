@@ -1,110 +1,99 @@
-# claude-ab-test-setup-skill
+# A/B Test Setup Skill
 
-A Claude Code skill for planning, designing, implementing, and evaluating A/B tests and product experiments.
+A practical skill for planning, launching, monitoring, and evaluating controlled product and marketing experiments. It focuses on clear hypotheses, measurable outcomes, valid experiment design, reliable assignment, and decisions grounded in both statistical and business significance.
 
-## Overview
+## What This Skill Helps With
 
-This skill helps design experiments that produce interpretable and actionable results. It covers hypothesis formation, baseline measurement, success metrics, sample size considerations, variant design, implementation, and analysis.
-
-A test should be run only when the team can define what decision the result will inform.
-
-## Main Capabilities
-
-- Clarify the business or product question.
-- Form a measurable hypothesis.
+- Turn an observation into a falsifiable hypothesis.
+- Choose between A/B, A/B/n, multivariate, and split-URL experiments.
 - Define control and treatment variants.
-- Select primary and guardrail metrics.
-- Assess baseline conversion and traffic volume.
-- Plan experiment duration and sample size.
-- Identify segmentation and randomization requirements.
-- Implement experiment assignment and exposure tracking.
-- Analyze results and uncertainty.
-- Document decisions and follow-up actions.
+- Select primary, secondary, and guardrail metrics.
+- Estimate sample size and experiment duration.
+- Choose client-side or server-side implementation.
+- Validate assignment and exposure tracking.
+- Monitor experiment quality without changing decision rules.
+- Interpret results and record follow-up actions.
 
-## Initial Assessment
+## When to Use It
 
-Before designing the test, establish:
-
-- What outcome should improve?
-- What change is being tested?
-- What is the current baseline?
-- How much eligible traffic is available?
-- Which metrics define success?
-- What guardrails must not deteriorate?
-- What technical and timeline constraints exist?
+Use this skill for controlled experiments, product changes, page variants, conversion optimization, copy or design tests, and experiment documentation. It is not a substitute for a testing platform or statistical review. Result quality depends on valid assignment, reliable instrumentation, enough sample, and a suitable analysis method.
 
 ## Installation
 
-```bash
+~~~bash
 git clone https://github.com/Brajesh31/claude-ab-test-setup-skill.git ~/.claude/skills/ab-test-setup
-```
+~~~
 
 ## Usage
 
-Invoke the skill when planning an experiment:
+Invoke:
 
-```text
+~~~text
 /ab-test-setup
-```
+~~~
 
-Provide the product change, audience, baseline metric, expected effect, traffic volume, and experiment platform.
+Provide the product change, target audience, baseline, expected effect, traffic volume, event definitions, test platform, and the decision the experiment should support.
 
-## Experiment Plan Structure
+## Experiment Design Workflow
 
-| Element | Description |
+1. Define the decision and the observation that motivates the test.
+2. Write a falsifiable hypothesis with an expected direction and metric.
+3. Choose the simplest design that answers the question.
+4. Define one primary metric plus secondary and guardrail metrics.
+5. Estimate sample size and duration from the actual experiment assumptions.
+6. Define eligibility, exclusions, randomization unit, and variant persistence.
+7. Validate assignment, exposure, and outcome events before launch.
+8. Pre-specify the stopping rule and analysis method.
+9. Monitor technical health and data quality while the test runs.
+10. Analyze effect size, uncertainty, practical value, and guardrails.
+11. Record the decision and follow-up learning.
+
+## Core Documents
+
+| Document | Purpose |
 |---|---|
-| Objective | Decision the experiment supports |
-| Hypothesis | Expected measurable effect |
-| Control | Current experience |
-| Treatment | Proposed change |
-| Primary metric | Main success measure |
-| Guardrail metrics | Measures that must remain healthy |
-| Audience | Eligible population |
-| Assignment | Randomization method |
-| Duration | Planned exposure period |
-| Decision rule | Criteria for interpreting results |
+| Experiment plan | Captures hypothesis, variants, metrics, sample size, and analysis |
+| Pre-launch checklist | Confirms assignment, tracking, QA, and guardrails |
+| Results review | Records outcomes, uncertainty, limitations, and decision |
+| Statistical notes | Explains p-values, intervals, power, and repeated peeking |
 
-## Recommended Workflow
+## Included Resources
 
-1. Define the decision and hypothesis.
-2. Confirm that the metric can be measured reliably.
-3. Review baseline conversion and traffic.
-4. Estimate sample size and experiment duration.
-5. Define variants and assignment logic.
-6. Implement exposure and outcome tracking.
-7. Test assignment, event collection, and sample-ratio balance.
-8. Run the experiment without repeatedly changing the decision rule.
-9. Analyze the result with uncertainty and practical effect size.
-10. Decide whether to ship, iterate, or stop.
+- [Experiment plan template](resources/experiment-plan-template.md)
+- [Pre-launch checklist](resources/pre-launch-checklist.md)
+- [Results review template](resources/results-review-template.md)
+- [Statistical interpretation notes](resources/statistical-interpretation.md)
 
-## Analysis Considerations
+## Statistical Caution
 
-- Avoid peeking and stopping solely because a temporary result looks favorable.
-- Check sample-ratio mismatch.
-- Consider novelty and seasonality effects.
-- Watch for multiple comparisons.
-- Keep the unit of randomization consistent.
-- Distinguish statistical significance from practical value.
-- Review guardrail metrics before rollout.
-- Document limitations and unexpected effects.
-
-## Repository Contents
-
-- `SKILL.md`: Main experiment design and analysis instructions.
-- `README.md`: Planning workflow and experiment checklist.
+A p-value is not the probability that a result is random or that the null hypothesis is true. A 95% confidence procedure does not imply a 95% probability that this particular interval contains the fixed true value. Report effect estimates and uncertainty, and distinguish statistical detectability from practical value.
 
 ## Quality Checklist
 
-- Hypothesis is specific and falsifiable.
-- Primary metric is defined before launch.
-- Baseline data is trustworthy.
-- Assignment is randomized and consistent.
-- Exposure events are recorded correctly.
-- Sample size is sufficient for the expected effect.
-- Guardrail metrics are monitored.
-- Analysis accounts for uncertainty.
-- Decision and limitations are documented.
+- The primary metric is defined before launch.
+- The randomization unit matches the analysis unit.
+- Assignment is stable where needed.
+- Exposure and outcome events are verified.
+- Sample size and stopping rules are documented.
+- Sample-ratio mismatch and instrumentation issues are checked.
+- Multiple comparisons and post-hoc segments are handled carefully.
+- Guardrails are reviewed before rollout.
+- Inconclusive results are reported honestly.
 
-## Practical Principle
+## Repository Structure
 
-If traffic is too low or the expected effect is too small to measure, do not pretend the test can produce a reliable answer. Consider a qualitative study, staged rollout, or another evaluation method.
+~~~text
+claude-ab-test-setup-skill/
+├── SKILL.md
+├── README.md
+├── LICENSE
+└── resources/
+    ├── experiment-plan-template.md
+    ├── pre-launch-checklist.md
+    ├── results-review-template.md
+    └── statistical-interpretation.md
+~~~
+
+## License
+
+See LICENSE. The source skill's MIT notice is preserved, with a separate notice for newly written repository documentation.
