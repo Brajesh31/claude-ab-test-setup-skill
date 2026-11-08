@@ -96,4 +96,4 @@ claude-ab-test-setup-skill/
 
 ## License
 
-See LICENSE. The source skill's MIT notice is preserved, with a separate notice for newly written repository documentation.
+Released under the MIT License. Copyright (c) 2026 Brajesh Kumar. See the root `LICENSE` file for the complete terms.
